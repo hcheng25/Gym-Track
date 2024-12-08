@@ -55,8 +55,7 @@ The date should be input in the `%Y-%m-%d` format. For example, December 7, 2024
 Information on whether the user would like to up the difficult of an exercise next time it is generated should be entered in the form of yes or no. There must be one entry for each exercise, and the entries must be entered in the same order that the exercises are listed in the OUTPUT_CSV file. Separate entries using a comma and no space.
 
 ### `-h`
-**Note:** Currently experiencing issues. Intended function below
-Calling for the help function should display a description of the function along with a list of the exercises in the order they appear in the OUTPUT_CSV file. This can be used as a reference when entering the `-u` entries.
+Using the `-h` option should display a description of the function along with a list of the exercises in the order they appear in the OUTPUT_CSV file. This can be used as a reference when entering the `-u` entries.
 
 ### Example usage
 On November 12, 2024, I generated a list of six exercises named Exercise 1 through Exercise 6. After doing the exercises that day, I want to increase the difficulty of Exercise 2 and Exercise 4 the next time they are given to me. I would run the `finish.py` script as shown below:
