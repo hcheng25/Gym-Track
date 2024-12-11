@@ -10,8 +10,8 @@ Difficulty is increased by increasing reps by a set value up to a maximumn numbe
 
 ## `.env` Setup
 The scripts utilize variables set in a `.env` file. The following variables should be set by the user:
-- DATA = path to a `.csv` file containing past workout data
-- CONFIG = path to a `.csv` containing parameters to determine script behavior
+- DATA = path to a `.csv` file containing past workout data (example/template included in repo)
+- CONFIG = path to a `.csv` containing parameters to determine script behavior (example/template included in repo)
 - OUTPUT_TXT = path to a `.txt` output file
 - OUTPUT_CSV = path to a `.csv` output file
 - PER_DAY = number determining the desired number of exercises generated per session
@@ -27,15 +27,17 @@ The DATA `.csv` file should contain the following columns:
     - `'yes'` if user wants the next session to be more difficult
     - `'no'` if user wants the next session to be the same difficulty (weight, sets, reps all unchangedd)
 
+Note that the DATA `.csv` file must contain at least one entry for each exercise the user would like to include in workout generation.
+
 ### CONFIG
-The DATA `.csv` file should contain the following columns:
+The CONFIG `.csv` file should contain the following columns:
 - `exercises`: All exercise names as they appear on the `DATA` spreadsheet
 - `weight_inc`: How much the weight for an exercise will increase when `up?` is set to `yes` and weight is increased
 - `rep_inc`: How many reps more will be assigned for an exercise when `up?` is set to `yes` and reps are increased
 - `min_rep`: The number that reps will be reset to when increasing weight
 - `max_rep`: The maximum number of reps at which increasing difficulting will increase weight and reset reps to `min_rep` value
 
-Each value can be set individually for each exercise using this spreadsheet.
+Each value can be set individually for each exercise using this spreadsheet. The CONFIG `.csv` is also the main way to customize what exercises are included in rotation. To stop including an exercise in rotation, simply remove its row from CONFIG. Additionally, ensure that any exercises that are on CONFIG each have at least one entry on the DATA `.csv` in order for the script to properly generate workouts with them.
 
 ### OUTPUT_TXT and OUTPUT_CSV
 Both these paths simply point to the desired output location. When running the scripts, files should be created if they do not already exist and will be updated as appropriate. If the user does not follow the generated list of exercises, the output `.csv` file can be manually edited to ensure that the correct new data is added to the complete DATA spreadsheet when running `finish.py`.
@@ -52,7 +54,7 @@ Running this script along with the necessary `-u` and `-d` options will fill in 
 The date should be input in the `%Y-%m-%d` format. For example, December 7, 2024 would be input as 2024-12-07.
 
 ### `-u`
-Information on whether the user would like to up the difficult of an exercise next time it is generated should be entered in the form of yes or no. There must be one entry for each exercise, and the entries must be entered in the same order that the exercises are listed in the OUTPUT_CSV file. Separate entries using a comma and no space.
+Information on whether the user would like to up the difficulty of an exercise next time it is generated should be entered in the form of yes or no. There must be one entry for each exercise, and the entries must be entered in the same order that the exercises are listed in the OUTPUT_CSV file. Separate entries using a comma and no space.
 
 ### `-h`
 Using the `-h` option should display a description of the function along with a list of the exercises in the order they appear in the OUTPUT_CSV file. This can be used as a reference when entering the `-u` entries.
