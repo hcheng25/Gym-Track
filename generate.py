@@ -33,11 +33,7 @@ if __name__ == '__main__':
         current_exercise = recent.loc[i, 'Exercise']
         ref_index = int(config.loc[config['exercises']==current_exercise].index[0])
         if recent.loc[i, 'up?']=='yes':
-            if recent.loc[i, 'reps']>=config.loc[ref_index,'max_rep']:
-                recent.loc[i, 'reps'] = config.loc[ref_index,'min_rep']
-                recent.loc[i, 'weight'] += config.loc[ref_index,'weight_inc']
-            else:
-                recent.loc[i, 'reps'] += config.loc[ref_index,'rep_inc']
+            recent.loc[i, 'weight'] += config.loc[ref_index,'weight_inc']
 
     # 5. empty `Date` and `up?` columns
     recent['Date'] = None
@@ -51,6 +47,4 @@ if __name__ == '__main__':
         for i in range(len(recent['Exercise'])):
             exercise = recent.loc[i, 'Exercise']
             weight = recent.loc[i, 'weight']
-            sets = recent.loc[i, 'sets']
-            reps = recent.loc[i, 'reps']
-            print(f'{exercise} {weight} {sets}x{reps}', file=file)
+            print(f'{exercise} {weight} lb', file=file)
